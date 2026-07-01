@@ -329,31 +329,33 @@
     // ===== SIMPLE PAGE RENDERERS =====
     function renderAbout() {
         const html = `
-            <div class="container" style="padding: 40px 0;">
-                <div class="text-center" style="margin-bottom: 40px;">
-                    <h2 class="section-title">About AKL Beyond Borders</h2>
-                    <p class="section-sub">Building financial freedom together since 2020</p>
-                </div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
-                    <div style="background: linear-gradient(135deg, #e8f5e9, #c8e6c9); border-radius: 32px; padding: 60px 40px; text-align: center; min-height: 300px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                        <i class="fas fa-users" style="font-size: 5rem; color: #2e7d32; margin-bottom: 16px;"></i>
-                        <h3 style="font-size: 2rem; color: #1a2e1a;">Our Story</h3>
-                        <p style="color: #2e7d32; margin-top: 8px;">Founded in 2020</p>
+            <section id="about-section">
+                <div class="container">
+                    <div class="text-center" style="margin-bottom: 40px;">
+                        <h2 class="section-title">About AKL Beyond Borders</h2>
+                        <p class="section-sub">Building financial freedom together since 2020</p>
                     </div>
-                    <div>
-                        <h2 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 16px;">Who We Are</h2>
-                        <p style="color: #4a6a4a; font-size: 1.05rem; margin-bottom: 20px;">AKL Beyond Borders Group is a premier financial community founded by visionary individuals dedicated to transforming lives through collective savings and strategic investments.</p>
-                        <p style="color: #4a6a4a; font-size: 1.05rem; margin-bottom: 20px;">We have grown from a small savings group to a robust financial ecosystem with over 100 members across different regions, all united by a common goal: financial freedom.</p>
-                        <ul>
-                            <li style="padding: 8px 0; display: flex; align-items: center; gap: 12px; font-weight: 500;"><i class="fas fa-check-circle" style="color: #43a047; font-size: 1.2rem;"></i> Transparent operations and governance</li>
-                            <li style="padding: 8px 0; display: flex; align-items: center; gap: 12px; font-weight: 500;"><i class="fas fa-check-circle" style="color: #43a047; font-size: 1.2rem;"></i> Member-centric approach</li>
-                            <li style="padding: 8px 0; display: flex; align-items: center; gap: 12px; font-weight: 500;"><i class="fas fa-check-circle" style="color: #43a047; font-size: 1.2rem;"></i> Proven track record of returns</li>
-                            <li style="padding: 8px 0; display: flex; align-items: center; gap: 12px; font-weight: 500;"><i class="fas fa-check-circle" style="color: #43a047; font-size: 1.2rem;"></i> Strong community support network</li>
-                        </ul>
-                        <a class="btn btn-primary" data-page="register" style="margin-top: 16px;"><i class="fas fa-user-plus"></i> Join Our Community</a>
+                    <div class="about-grid">
+                        <div class="about-image">
+                            <i class="fas fa-users"></i>
+                            <h3>Our Story</h3>
+                            <p style="color: #2e7d32; margin-top: 8px;">Founded in 2020</p>
+                        </div>
+                        <div class="about-text">
+                            <h2>Who We Are</h2>
+                            <p>AKL Beyond Borders Group is a premier financial community founded by visionary individuals dedicated to transforming lives through collective savings and strategic investments.</p>
+                            <p>We have grown from a small savings group to a robust financial ecosystem with over 100 members across different regions, all united by a common goal: financial freedom.</p>
+                            <ul>
+                                <li><i class="fas fa-check-circle"></i> Transparent operations and governance</li>
+                                <li><i class="fas fa-check-circle"></i> Member-centric approach</li>
+                                <li><i class="fas fa-check-circle"></i> Proven track record of returns</li>
+                                <li><i class="fas fa-check-circle"></i> Strong community support network</li>
+                            </ul>
+                            <a class="btn btn-primary" data-page="register" style="margin-top: 16px;"><i class="fas fa-user-plus"></i> Join Our Community</a>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </section>
         `;
         DOM.app.innerHTML = html;
         bindPageNavigation();
