@@ -431,7 +431,10 @@ img {
 
 /* ===== LANDING PAGE ===== */
 .hero {
-    background: linear-gradient(135deg, #1b3a1b 0%, #2e7d32 40%, #43a047 100%);
+    background: linear-gradient(135deg, rgba(9, 35, 15, 0.88) 0%, rgba(12, 47, 20, 0.88) 45%, rgba(9, 35, 15, 0.9) 100%), url('../images/chama.png');
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: multiply;
     padding: 50px 0 60px;
     position: relative;
     overflow: hidden;
