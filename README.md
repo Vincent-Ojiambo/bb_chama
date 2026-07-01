@@ -1,9 +1,9 @@
-AKL Beyond Borders · Chama Management System
+Ladies Beyond Borders · Chama Management System
 ===========================================
 
 Overview
 --------
-AKL Beyond Borders is a client-side web application for managing chama-style savings groups. The interface includes membership management, transaction summaries, loans, investments, and welfare support modules. The project is built with plain HTML, CSS, and JavaScript.
+Ladies Beyond Borders is a client-side web application for managing chama-style savings groups. The interface includes membership management, transaction summaries, loans, investments, and welfare support modules. The project is built with plain HTML, CSS, and JavaScript.
 
 Features
 --------

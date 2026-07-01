@@ -232,7 +232,7 @@
                         </div>
                         <div class="about-text">
                             <h2>About Our Chama</h2>
-                            <p>AKL Beyond Borders Group is a premier financial community founded by visionary individuals dedicated to transforming lives through collective savings and strategic investments.</p>
+                            <p>Ladies Beyond Borders Group is a premier financial community founded by visionary individuals dedicated to transforming lives through collective savings and strategic investments.</p>
                             <p>We have grown from a small savings group to a robust financial ecosystem with over 100 members across different regions, all united by a common goal: financial freedom.</p>
                             <ul>
                                 <li><i class="fas fa-check-circle"></i> Transparent operations and governance</li>
@@ -248,7 +248,7 @@
             <div id="features-section">
                 <div class="container">
                     <div class="text-center">
-                        <h2 class="section-title">Why Choose AKL Beyond Borders?</h2>
+                        <h2 class="section-title">Why Choose Ladies Beyond Borders?</h2>
                         <p class="section-sub">Comprehensive financial solutions designed for your growth</p>
                     </div>
                     <div class="features-grid">
@@ -289,7 +289,7 @@
                     </div>
                     <div class="testimonials-grid">
                         <div class="testimonial-card">
-                            <p>"Joining AKL Beyond Borders was one of the best financial decisions I've made. The disciplined savings approach and access to loans have helped me grow my business significantly."</p>
+                            <p>"Joining Ladies Beyond Borders was one of the best financial decisions I've made. The disciplined savings approach and access to loans have helped me grow my business significantly."</p>
                             <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                             <div class="author"><div class="avatar"><i class="fas fa-user"></i></div><div><strong>John Kamau</strong><div style="font-size:0.8rem; color:#4a6a4a;">Member since 2020</div></div></div>
                         </div>
@@ -310,7 +310,7 @@
             <div id="cta-section">
                 <div class="container">
                     <h2>Ready to Build Your Financial Future?</h2>
-                    <p>Join AKL Beyond Borders today and start your journey towards financial freedom with a community that cares.</p>
+                    <p>Join Ladies Beyond Borders today and start your journey towards financial freedom with a community that cares.</p>
                     <div class="cta-buttons">
                         <a class="btn btn-primary btn-lg" data-page="register"><i class="fas fa-user-plus"></i> Join Now</a>
                         <a class="btn btn-outline-light btn-lg" data-page="login"><i class="fas fa-sign-in-alt"></i> Login</a>
@@ -330,7 +330,7 @@
             <section id="about-section">
                 <div class="container">
                     <div class="text-center" style="margin-bottom: 40px;">
-                        <h2 class="section-title">About AKL Beyond Borders</h2>
+                        <h2 class="section-title">About Ladies Beyond Borders</h2>
                         <p class="section-sub">Building financial freedom together since 2020</p>
                     </div>
                     <div class="about-grid">
@@ -341,7 +341,7 @@
                         </div>
                         <div class="about-text">
                             <h2>Who We Are</h2>
-                            <p>AKL Beyond Borders Group is a premier financial community founded by visionary individuals dedicated to transforming lives through collective savings and strategic investments.</p>
+                            <p>Ladies Beyond Borders Group is a premier financial community founded by visionary individuals dedicated to transforming lives through collective savings and strategic investments.</p>
                             <p>We have grown from a small savings group to a robust financial ecosystem with over 100 members across different regions, all united by a common goal: financial freedom.</p>
                             <ul>
                                 <li><i class="fas fa-check-circle"></i> Transparent operations and governance</li>
@@ -424,7 +424,7 @@
                 </div>
                 <div class="testimonials-grid">
                     <div class="testimonial-card">
-                        <p>"Joining AKL Beyond Borders was one of the best financial decisions I've made. The disciplined savings approach and access to loans have helped me grow my business significantly."</p>
+                        <p>"Joining Ladies Beyond Borders was one of the best financial decisions I've made. The disciplined savings approach and access to loans have helped me grow my business significantly."</p>
                         <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                         <div class="author"><div class="avatar"><i class="fas fa-user"></i></div><div><strong>John Kamau</strong><div style="font-size:0.8rem; color:#4a6a4a;">Member since 2026</div></div></div>
                     </div>
@@ -439,7 +439,7 @@
                         <div class="author"><div class="avatar"><i class="fas fa-user"></i></div><div><strong>Peter Ochieng</strong><div style="font-size:0.8rem; color:#4a6a4a;">Member since 2022</div></div></div>
                     </div>
                     <div class="testimonial-card">
-                        <p>"The transparency and accountability in this group is unmatched. I trust AKL Beyond Borders with my savings and investments completely."</p>
+                        <p>"The transparency and accountability in this group is unmatched. I trust Ladies Beyond Borders with my savings and investments completely."</p>
                         <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                         <div class="author"><div class="avatar"><i class="fas fa-user"></i></div><div><strong>Grace Akinyi</strong><div style="font-size:0.8rem; color:#4a6a4a;">Member since 2023</div></div></div>
                     </div>
@@ -822,7 +822,7 @@
             return false;
         }
 
-        const stored = localStorage.getItem('akl_user');
+        const stored = localStorage.getItem('ladies_user');
         if (stored) {
             try {
                 const user = JSON.parse(stored);
@@ -832,7 +832,7 @@
                         email: user.email,
                         role: user.role || 'member'
                     };
-                    localStorage.setItem('akl_user', JSON.stringify(currentUser));
+                    localStorage.setItem('ladies_user', JSON.stringify(currentUser));
                     showToast('Welcome back, ' + currentUser.name + '!', 'success');
                     updateUIForUser();
                     return true;
@@ -848,7 +848,7 @@
         }
         const name = email.split('@')[0];
         const newUser = { name, email, role };
-        localStorage.setItem('akl_user', JSON.stringify(newUser));
+        localStorage.setItem('ladies_user', JSON.stringify(newUser));
         currentUser = newUser;
         showToast('Welcome ' + name + '!', 'success');
         updateUIForUser();
@@ -861,7 +861,7 @@
             return false;
         }
         const user = { name, email, phone, role: role || 'member' };
-        localStorage.setItem('akl_user', JSON.stringify(user));
+        localStorage.setItem('ladies_user', JSON.stringify(user));
         currentUser = user;
         showToast('Account created as ' + (role === 'admin' ? 'Chama Admin' : 'Member') + '!', 'success');
         updateUIForUser();
@@ -870,7 +870,7 @@
 
     function handleLogout() {
         currentUser = null;
-        localStorage.removeItem('akl_user');
+        localStorage.removeItem('ladies_user');
         showToast('Logged out successfully', '');
         updateUIForUser();
         navigateTo('home');
@@ -1104,7 +1104,7 @@
     // ===== RESTORE SESSION =====
 
     function restoreSession() {
-        const stored = localStorage.getItem('akl_user');
+        const stored = localStorage.getItem('ladies_user');
         if (stored) {
             try {
                 const user = JSON.parse(stored);
