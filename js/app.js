@@ -67,10 +67,10 @@
             { id: 3, name: 'Tech Startup', amount: 25000, returns: 20, status: 'active', date: '2026-03-10' },
         ],
         members: [
-            { id: 1, name: 'John Kamau', email: 'john@email.com', role: 'member', status: 'online', joined: '2020-01-15' },
-            { id: 2, name: 'Mary Wanjiku', email: 'mary@email.com', role: 'member', status: 'online', joined: '2021-03-20' },
-            { id: 3, name: 'Peter Ochieng', email: 'peter@email.com', role: 'member', status: 'offline', joined: '2022-06-10' },
-            { id: 4, name: 'Grace Akinyi', email: 'grace@email.com', role: 'member', status: 'online', joined: '2023-01-05' },
+            { id: 1, name: 'John Kamau', email: 'john@email.com', role: 'member', status: 'online', joined: '2026-01-15' },
+            { id: 2, name: 'Mary Wanjiku', email: 'mary@email.com', role: 'member', status: 'online', joined: '2026-03-20' },
+            { id: 3, name: 'Peter Ochieng', email: 'peter@email.com', role: 'member', status: 'offline', joined: '2026-06-10' },
+            { id: 4, name: 'Grace Akinyi', email: 'grace@email.com', role: 'member', status: 'online', joined: '2026-01-05' },
             { id: 5, name: 'David Mwangi', email: 'david@email.com', role: 'pending', status: 'pending', joined: '2026-06-25' },
         ],
         events: [
@@ -186,16 +186,14 @@
     }
 
     // ===== PAGE RENDERERS =====
-    // (All page renderers remain the same as before - see previous version)
-    // For brevity, I'll include the key renderers and navigation
-
     function renderHome() {
         const html = `
             <div class="hero">
                 <div class="container">
                     <div class="hero-content">
                         <div class="hero-text">
-                            <h1>Welcome to <br><span>AKL Beyond Borders</span></h1>
+                            <div class="hero-alert">Save Today · Secure Your Future</div>
+                            <h1>Welcome to <br><span>Ladies Beyond Borders</span></h1>
                             <p>Empowering members through collective savings, strategic investments, and financial growth. Join our community and build your financial future together.</p>
                             <div class="hero-buttons">
                                 <a class="btn btn-primary btn-lg" data-page="register"><i class="fas fa-user-plus"></i> Become a Member</a>
@@ -428,7 +426,7 @@
                     <div class="testimonial-card">
                         <p>"Joining AKL Beyond Borders was one of the best financial decisions I've made. The disciplined savings approach and access to loans have helped me grow my business significantly."</p>
                         <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                        <div class="author"><div class="avatar"><i class="fas fa-user"></i></div><div><strong>John Kamau</strong><div style="font-size:0.8rem; color:#4a6a4a;">Member since 2020</div></div></div>
+                        <div class="author"><div class="avatar"><i class="fas fa-user"></i></div><div><strong>John Kamau</strong><div style="font-size:0.8rem; color:#4a6a4a;">Member since 2026</div></div></div>
                     </div>
                     <div class="testimonial-card">
                         <p>"The welfare support came in handy when I had a medical emergency. The group stood by me and provided the financial assistance I needed. This is truly a family."</p>
