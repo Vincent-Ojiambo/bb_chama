@@ -228,7 +228,7 @@
                         <div class="about-image">
                             <i class="fas fa-users"></i>
                             <h3>Building Financial Freedom Together</h3>
-                            <p style="color: #2e7d32; margin-top: 8px;">Since 2020</p>
+                            <p style="color: #2e7d32; margin-top: 8px;">Since 2026</p>
                         </div>
                         <div class="about-text">
                             <h2>About Our Chama</h2>
@@ -291,17 +291,17 @@
                         <div class="testimonial-card">
                             <p>"Joining Ladies Beyond Borders was one of the best financial decisions I've made. The disciplined savings approach and access to loans have helped me grow my business significantly."</p>
                             <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                            <div class="author"><div class="avatar"><i class="fas fa-user"></i></div><div><strong>John Kamau</strong><div style="font-size:0.8rem; color:#4a6a4a;">Member since 2020</div></div></div>
+                            <div class="author"><div class="avatar"><i class="fas fa-user"></i></div><div><strong>Jane Kamau</strong><div style="font-size:0.8rem; color:#4a6a4a;">Member since 2026</div></div></div>
                         </div>
                         <div class="testimonial-card">
                             <p>"The welfare support came in handy when I had a medical emergency. The group stood by me and provided the financial assistance I needed. This is truly a family."</p>
                             <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                            <div class="author"><div class="avatar"><i class="fas fa-user"></i></div><div><strong>Mary Wanjiku</strong><div style="font-size:0.8rem; color:#4a6a4a;">Member since 2021</div></div></div>
+                            <div class="author"><div class="avatar"><i class="fas fa-user"></i></div><div><strong>Mary Wanjiku</strong><div style="font-size:0.8rem; color:#4a6a4a;">Member since 2026</div></div></div>
                         </div>
                         <div class="testimonial-card">
                             <p>"The investment opportunities have been amazing. I've learned so much about financial management and my savings have grown beyond my expectations."</p>
                             <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
-                            <div class="author"><div class="avatar"><i class="fas fa-user"></i></div><div><strong>Peter Ochieng</strong><div style="font-size:0.8rem; color:#4a6a4a;">Member since 2022</div></div></div>
+                            <div class="author"><div class="avatar"><i class="fas fa-user"></i></div><div><strong>Priscilla Ochieng</strong><div style="font-size:0.8rem; color:#4a6a4a;">Member since 2026</div></div></div>
                         </div>
                     </div>
                 </div>
@@ -426,32 +426,32 @@
                     <div class="testimonial-card">
                         <p>"Joining Ladies Beyond Borders was one of the best financial decisions I've made. The disciplined savings approach and access to loans have helped me grow my business significantly."</p>
                         <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                        <div class="author"><div class="avatar"><i class="fas fa-user"></i></div><div><strong>John Kamau</strong><div style="font-size:0.8rem; color:#4a6a4a;">Member since 2026</div></div></div>
+                        <div class="author"><div class="avatar"><i class="fas fa-user"></i></div><div><strong>Jane Kamau</strong><div style="font-size:0.8rem; color:#4a6a4a;">Member since 2026</div></div></div>
                     </div>
                     <div class="testimonial-card">
                         <p>"The welfare support came in handy when I had a medical emergency. The group stood by me and provided the financial assistance I needed. This is truly a family."</p>
                         <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                        <div class="author"><div class="avatar"><i class="fas fa-user"></i></div><div><strong>Mary Wanjiku</strong><div style="font-size:0.8rem; color:#4a6a4a;">Member since 2021</div></div></div>
+                        <div class="author"><div class="avatar"><i class="fas fa-user"></i></div><div><strong>Mary Wanjiku</strong><div style="font-size:0.8rem; color:#4a6a4a;">Member since 2026</div></div></div>
                     </div>
                     <div class="testimonial-card">
                         <p>"The investment opportunities have been amazing. I've learned so much about financial management and my savings have grown beyond my expectations."</p>
                         <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
-                        <div class="author"><div class="avatar"><i class="fas fa-user"></i></div><div><strong>Peter Ochieng</strong><div style="font-size:0.8rem; color:#4a6a4a;">Member since 2022</div></div></div>
+                        <div class="author"><div class="avatar"><i class="fas fa-user"></i></div><div><strong>Priscilla Ochieng</strong><div style="font-size:0.8rem; color:#4a6a4a;">Member since 2026</div></div></div>
                     </div>
                     <div class="testimonial-card">
                         <p>"The transparency and accountability in this group is unmatched. I trust Ladies Beyond Borders with my savings and investments completely."</p>
                         <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                        <div class="author"><div class="avatar"><i class="fas fa-user"></i></div><div><strong>Grace Akinyi</strong><div style="font-size:0.8rem; color:#4a6a4a;">Member since 2023</div></div></div>
+                        <div class="author"><div class="avatar"><i class="fas fa-user"></i></div><div><strong>Grace Akinyi</strong><div style="font-size:0.8rem; color:#4a6a4a;">Member since 2026</div></div></div>
                     </div>
                     <div class="testimonial-card">
                         <p>"The financial education sessions have transformed how I manage my money. I've learned so much about investing and building wealth."</p>
                         <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                        <div class="author"><div class="avatar"><i class="fas fa-user"></i></div><div><strong>David Mwangi</strong><div style="font-size:0.8rem; color:#4a6a4a;">Member since 2022</div></div></div>
+                        <div class="author"><div class="avatar"><i class="fas fa-user"></i></div><div><strong>Diana Mwangi</strong><div style="font-size:0.8rem; color:#4a6a4a;">Member since 2026</div></div></div>
                     </div>
                     <div class="testimonial-card">
                         <p>"Being part of this community has given me financial security and peace of mind. The support system here is incredible."</p>
                         <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                        <div class="author"><div class="avatar"><i class="fas fa-user"></i></div><div><strong>Sarah Chelangat</strong><div style="font-size:0.8rem; color:#4a6a4a;">Member since 2021</div></div></div>
+                        <div class="author"><div class="avatar"><i class="fas fa-user"></i></div><div><strong>Sarah Chelangat</strong><div style="font-size:0.8rem; color:#4a6a4a;">Member since 2026</div></div></div>
                     </div>
                 </div>
                 <div style="text-align: center; margin-top: 40px;">
