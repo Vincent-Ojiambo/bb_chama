@@ -584,166 +584,378 @@
         const pendingLoans = mockData.loans.filter(l => l.status === 'pending').length;
         const activeMembers = mockData.members.filter(m => m.status === 'online').length;
         const totalMembers = mockData.members.length;
+        const myLoans = mockData.loans.filter(l => l.member === currentUser?.name || l.status === 'active');
+        const myInvestments = mockData.investments.filter(i => i.status === 'active');
 
         const html = `
-            <div class="container">
-                <div class="dash-header">
-                    <div class="user-info">
-                        <div class="avatar"><i class="fas fa-user"></i></div>
-                        <div>
-                            <strong style="font-size: 1.1rem;">${currentUser ? currentUser.name : 'Member'}</strong>
-                            <span class="badge ${isAdmin ? 'admin' : 'member'}" style="margin-left: 8px;">${isAdmin ? 'Chama Admin' : 'Member'}</span>
-                            <div style="font-size: 0.8rem; color: #4a6a4a;">Active · Last login: Today</div>
+            <div class="dashboard-container">
+                <!-- Dashboard Header -->
+                <div class="dashboard-header">
+                    <div class="dashboard-header-left">
+                        <div class="dashboard-welcome">
+                            <h1>Welcome back, ${currentUser ? currentUser.name.split(' ')[0] : 'Member'}! 👋</h1>
+                            <p>Here's what's happening with your ${isAdmin ? 'chama' : 'account'} today.</p>
                         </div>
                     </div>
-                    <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
-                        <span class="badge success"><i class="fas fa-circle" style="color: #4ade80; font-size: 0.5rem; margin-right: 4px;"></i> Online</span>
-                        <a href="#" class="btn btn-sm btn-secondary" id="dashLogoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    <div class="dashboard-header-right">
+                        <div class="dashboard-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>${new Date().toLocaleDateString('en-KE', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                        </div>
+                        <div class="dashboard-user">
+                            <div class="user-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="user-info">
+                                <span class="user-name">${currentUser ? currentUser.name : 'Member'}</span>
+                                <span class="user-role badge ${isAdmin ? 'admin' : 'member'}">${isAdmin ? 'Chama Admin' : 'Member'}</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-secondary btn-sm" id="dashLogoutBtn">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </button>
                     </div>
                 </div>
 
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="icon green"><i class="fas fa-piggy-bank"></i></div>
-                        <div class="info">
-                            <h3>${formatCurrency(totalSavings)}</h3>
-                            <p>Total Savings</p>
-                            <div class="trend up"><i class="fas fa-arrow-up"></i> 12.5% this month</div>
+                <!-- Stats Overview -->
+                <div class="stats-overview">
+                    <div class="stat-card enhanced">
+                        <div class="stat-icon savings">
+                            <i class="fas fa-piggy-bank"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value">${formatCurrency(totalSavings)}</div>
+                            <div class="stat-label">Total Savings</div>
+                            <div class="stat-trend positive">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>12.5% from last month</span>
+                            </div>
+                        </div>
+                        <div class="stat-chart">
+                            <div class="mini-chart">
+                                <div class="chart-bar" style="height: 60%"></div>
+                                <div class="chart-bar" style="height: 80%"></div>
+                                <div class="chart-bar" style="height: 45%"></div>
+                                <div class="chart-bar" style="height: 90%"></div>
+                                <div class="chart-bar" style="height: 70%"></div>
+                                <div class="chart-bar active" style="height: 100%"></div>
+                            </div>
                         </div>
                     </div>
-                    <div class="stat-card">
-                        <div class="icon yellow"><i class="fas fa-hand-holding-usd"></i></div>
-                        <div class="info">
-                            <h3>${formatCurrency(totalLoans)}</h3>
-                            <p>Active Loans</p>
-                            <div class="trend up"><i class="fas fa-arrow-up"></i> 8.3% this month</div>
+
+                    <div class="stat-card enhanced">
+                        <div class="stat-icon loans">
+                            <i class="fas fa-hand-holding-usd"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value">${formatCurrency(totalLoans)}</div>
+                            <div class="stat-label">Active Loans</div>
+                            <div class="stat-trend positive">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>8.3% from last month</span>
+                            </div>
+                        </div>
+                        <div class="stat-chart">
+                            <div class="mini-chart">
+                                <div class="chart-bar" style="height: 50%"></div>
+                                <div class="chart-bar" style="height: 65%"></div>
+                                <div class="chart-bar" style="height: 75%"></div>
+                                <div class="chart-bar" style="height: 60%"></div>
+                                <div class="chart-bar" style="height: 85%"></div>
+                                <div class="chart-bar active" style="height: 95%"></div>
+                            </div>
                         </div>
                     </div>
-                    <div class="stat-card">
-                        <div class="icon blue"><i class="fas fa-chart-line"></i></div>
-                        <div class="info">
-                            <h3>${formatCurrency(totalInvestments)}</h3>
-                            <p>Total Investments</p>
-                            <div class="trend up"><i class="fas fa-arrow-up"></i> 15.2% this month</div>
+
+                    <div class="stat-card enhanced">
+                        <div class="stat-icon investments">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value">${formatCurrency(totalInvestments)}</div>
+                            <div class="stat-label">Total Investments</div>
+                            <div class="stat-trend positive">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>15.2% from last month</span>
+                            </div>
+                        </div>
+                        <div class="stat-chart">
+                            <div class="mini-chart">
+                                <div class="chart-bar" style="height: 40%"></div>
+                                <div class="chart-bar" style="height: 55%"></div>
+                                <div class="chart-bar" style="height: 70%"></div>
+                                <div class="chart-bar" style="height: 85%"></div>
+                                <div class="chart-bar" style="height: 90%"></div>
+                                <div class="chart-bar active" style="height: 100%"></div>
+                            </div>
                         </div>
                     </div>
-                    <div class="stat-card">
-                        <div class="icon purple"><i class="fas fa-users"></i></div>
-                        <div class="info">
-                            <h3>${totalMembers}</h3>
-                            <p>Active Members</p>
-                            <div class="trend up"><i class="fas fa-arrow-up"></i> ${activeMembers} online now</div>
+
+                    <div class="stat-card enhanced">
+                        <div class="stat-icon members">
+                            <div class="members-count">
+                                <span class="count">${totalMembers}</span>
+                                <span class="label">Members</span>
+                            </div>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value">${activeMembers}</div>
+                            <div class="stat-label">Online Now</div>
+                            <div class="stat-trend neutral">
+                                <i class="fas fa-circle"></i>
+                                <span>${totalMembers - activeMembers} offline</span>
+                            </div>
+                        </div>
+                        <div class="stat-chart">
+                            <div class="online-indicators">
+                                <div class="indicator online"></div>
+                                <div class="indicator online"></div>
+                                <div class="indicator online"></div>
+                                <div class="indicator offline"></div>
+                                <div class="indicator online"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="dashboard-grid">
+                <!-- Main Dashboard Grid -->
+                <div class="dashboard-grid enhanced">
+                    <!-- Left Column -->
                     <div class="dashboard-main">
-                        <div class="card">
+                        <!-- Quick Actions -->
+                        <div class="card enhanced">
                             <div class="card-header">
-                                <h3><i class="fas fa-bolt" style="color: #2e7d32;"></i> Quick Actions</h3>
+                                <h3><i class="fas fa-bolt"></i> Quick Actions</h3>
+                                <span class="card-badge">Fast Access</span>
                             </div>
-                            <div class="quick-actions-grid">
-                                <div class="quick-action-btn" id="quickContribute">
-                                    <i class="fas fa-plus-circle"></i>
-                                    <span>Contribute</span>
+                            <div class="quick-actions-enhanced">
+                                <div class="quick-action-card" id="quickContribute">
+                                    <div class="action-icon contribute">
+                                        <i class="fas fa-plus-circle"></i>
+                                    </div>
+                                    <h4>Make Contribution</h4>
+                                    <p>Add to your savings</p>
                                 </div>
-                                <div class="quick-action-btn" id="quickLoan">
-                                    <i class="fas fa-hand-holding-usd"></i>
-                                    <span>Apply Loan</span>
+                                <div class="quick-action-card" id="quickLoan">
+                                    <div class="action-icon loan">
+                                        <i class="fas fa-hand-holding-usd"></i>
+                                    </div>
+                                    <h4>Apply for Loan</h4>
+                                    <p>Get instant access</p>
                                 </div>
-                                <div class="quick-action-btn" id="quickInvest">
-                                    <i class="fas fa-chart-pie"></i>
-                                    <span>Invest</span>
+                                <div class="quick-action-card" id="quickInvest">
+                                    <div class="action-icon invest">
+                                        <i class="fas fa-chart-pie"></i>
+                                    </div>
+                                    <h4>View Investments</h4>
+                                    <p>Track your portfolio</p>
                                 </div>
-                                <div class="quick-action-btn" id="quickWelfare">
-                                    <i class="fas fa-heart"></i>
-                                    <span>Welfare Request</span>
+                                <div class="quick-action-card" id="quickWelfare">
+                                    <div class="action-icon welfare">
+                                        <i class="fas fa-heart"></i>
+                                    </div>
+                                    <h4>Welfare Support</h4>
+                                    <p>Request assistance</p>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="card">
+                        <!-- Recent Activity -->
+                        <div class="card enhanced">
                             <div class="card-header">
-                                <h3><i class="fas fa-clock" style="color: #2e7d32;"></i> Recent Activity</h3>
+                                <h3><i class="fas fa-history"></i> Recent Activity</h3>
+                                <button class="btn-link" id="viewAllActivity">View All</button>
                             </div>
-                            <div class="activity-list">
-                                ${mockData.transactions.slice(0, 5).map(t => `
-                                    <div class="activity-item">
-                                        <div class="icon ${t.type}">
+                            <div class="activity-list-enhanced">
+                                ${mockData.transactions.slice(0, 6).map((t, index) => `
+                                    <div class="activity-item-enhanced" style="animation-delay: ${index * 0.1}s">
+                                        <div class="activity-icon ${t.type}">
                                             <i class="fas fa-${t.type === 'deposit' ? 'arrow-down' : t.type === 'withdraw' ? 'arrow-up' : t.type === 'loan' ? 'hand-holding-usd' : 'chart-line'}"></i>
                                         </div>
-                                        <div class="details">
+                                        <div class="activity-details">
                                             <h4>${t.description}</h4>
-                                            <p>${formatDate(t.date)} · ${t.status}</p>
+                                            <div class="activity-meta">
+                                                <span class="activity-date">${formatDate(t.date)}</span>
+                                                <span class="activity-status status-${t.status}">${t.status}</span>
+                                            </div>
                                         </div>
-                                        <div class="amount ${t.type === 'deposit' || t.type === 'loan' ? 'positive' : 'negative'}">
-                                            ${t.type === 'deposit' || t.type === 'loan' ? '+' : '-'} ${formatCurrency(t.amount)}
+                                        <div class="activity-amount ${t.type === 'deposit' || t.type === 'loan' ? 'positive' : 'negative'}">
+                                            ${t.type === 'deposit' || t.type === 'loan' ? '+' : '-'}${formatCurrency(t.amount)}
                                         </div>
                                     </div>
                                 `).join('')}
                             </div>
                         </div>
-                    </div>
 
-                    <div class="dashboard-sidebar">
-                        ${isAdmin ? `
-                        <div class="widget">
-                            <div class="widget-title"><i class="fas fa-users" style="color: #2e7d32;"></i> Member Stats</div>
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-                                <div style="background: #f5faf5; padding: 12px; border-radius: 10px; text-align: center;">
-                                    <div style="font-size: 1.4rem; font-weight: 700;">${mockData.members.filter(m => m.status === 'online').length}</div>
-                                    <div style="font-size: 0.75rem; color: #4a6a4a;">Online</div>
-                                </div>
-                                <div style="background: #f5faf5; padding: 12px; border-radius: 10px; text-align: center;">
-                                    <div style="font-size: 1.4rem; font-weight: 700;">${mockData.members.filter(m => m.role === 'pending').length}</div>
-                                    <div style="font-size: 0.75rem; color: #4a6a4a;">Pending</div>
-                                </div>
-                                <div style="background: #f5faf5; padding: 12px; border-radius: 10px; text-align: center;">
-                                    <div style="font-size: 1.4rem; font-weight: 700;">${mockData.loans.filter(l => l.status === 'active').length}</div>
-                                    <div style="font-size: 0.75rem; color: #4a6a4a;">Active Loans</div>
-                                </div>
-                                <div style="background: #f5faf5; padding: 12px; border-radius: 10px; text-align: center;">
-                                    <div style="font-size: 1.4rem; font-weight: 700;">${mockData.loans.filter(l => l.status === 'pending').length}</div>
-                                    <div style="font-size: 0.75rem; color: #4a6a4a;">Pending Loans</div>
-                                </div>
+                        <!-- My Loans Section (Member) -->
+                        ${!isAdmin ? `
+                        <div class="card enhanced">
+                            <div class="card-header">
+                                <h3><i class="fas fa-file-invoice-dollar"></i> My Loans</h3>
+                                <button class="btn-link" id="viewAllLoans">View All</button>
+                            </div>
+                            <div class="loans-list">
+                                ${myLoans.slice(0, 3).map(loan => `
+                                    <div class="loan-item">
+                                        <div class="loan-info">
+                                            <h4>${loan.member}'s Loan</h4>
+                                            <p>${formatCurrency(loan.amount)} · ${loan.term}</p>
+                                        </div>
+                                        <div class="loan-status">
+                                            <span class="status-badge ${loan.status}">${loan.status}</span>
+                                            <span class="loan-interest">${loan.interest}% interest</span>
+                                        </div>
+                                    </div>
+                                `).join('')}
                             </div>
                         </div>
                         ` : ''}
+                    </div>
 
-                        <div class="widget">
-                            <div class="widget-title"><i class="fas fa-calendar-alt" style="color: #2e7d32;"></i> Upcoming Events</div>
-                            <ul class="upcoming-events">
-                                ${mockData.events.map(e => `
-                                    <li>
-                                        <div class="event-date">${formatDate(e.date)}</div>
-                                        <div class="event-desc">${e.desc}</div>
-                                    </li>
+                    <!-- Right Column -->
+                    <div class="dashboard-sidebar enhanced">
+                        <!-- Admin: Member Management Widget -->
+                        ${isAdmin ? `
+                        <div class="widget enhanced admin-widget">
+                            <div class="widget-header">
+                                <h3><i class="fas fa-users-cog"></i> Member Management</h3>
+                                <button class="btn btn-sm btn-primary" id="addMemberBtn">
+                                    <i class="fas fa-plus"></i> Add
+                                </button>
+                            </div>
+                            <div class="member-stats-grid">
+                                <div class="member-stat-item">
+                                    <div class="stat-icon-small online">
+                                        <i class="fas fa-circle"></i>
+                                    </div>
+                                    <div class="stat-info">
+                                        <span class="stat-number">${mockData.members.filter(m => m.status === 'online').length}</span>
+                                        <span class="stat-text">Online</span>
+                                    </div>
+                                </div>
+                                <div class="member-stat-item">
+                                    <div class="stat-icon-small pending">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                    <div class="stat-info">
+                                        <span class="stat-number">${mockData.members.filter(m => m.role === 'pending').length}</span>
+                                        <span class="stat-text">Pending</span>
+                                    </div>
+                                </div>
+                                <div class="member-stat-item">
+                                    <div class="stat-icon-small active-loans">
+                                        <i class="fas fa-hand-holding-usd"></i>
+                                    </div>
+                                    <div class="stat-info">
+                                        <span class="stat-number">${mockData.loans.filter(l => l.status === 'active').length}</span>
+                                        <span class="stat-text">Active Loans</span>
+                                    </div>
+                                </div>
+                                <div class="member-stat-item">
+                                    <div class="stat-icon-small pending-loans">
+                                        <i class="fas fa-hourglass-half"></i>
+                                    </div>
+                                    <div class="stat-info">
+                                        <span class="stat-number">${mockData.loans.filter(l => l.status === 'pending').length}</span>
+                                        <span class="stat-text">Pending Loans</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-secondary w-100" id="manageMembersBtn">
+                                <i class="fas fa-users"></i> Manage All Members
+                            </button>
+                        </div>
+                        ` : ''}
+
+                        <!-- Upcoming Events -->
+                        <div class="widget enhanced">
+                            <div class="widget-header">
+                                <h3><i class="fas fa-calendar-check"></i> Upcoming Events</h3>
+                                <button class="btn-link" id="viewAllEvents">View All</button>
+                            </div>
+                            <div class="events-list">
+                                ${mockData.events.slice(0, 4).map((e, index) => `
+                                    <div class="event-item" style="animation-delay: ${index * 0.1}s">
+                                        <div class="event-date-box">
+                                            <div class="event-day">${new Date(e.date).getDate()}</div>
+                                            <div class="event-month">${new Date(e.date).toLocaleString('default', { month: 'short' })}</div>
+                                        </div>
+                                        <div class="event-details">
+                                            <h4>${e.desc}</h4>
+                                            <p>${formatDate(e.date)}</p>
+                                        </div>
+                                        <div class="event-action">
+                                            <i class="fas fa-chevron-right"></i>
+                                        </div>
+                                    </div>
                                 `).join('')}
-                            </ul>
+                            </div>
                         </div>
 
-                        <div class="widget">
-                            <div class="widget-title"><i class="fas fa-chart-simple" style="color: #2e7d32;"></i> Quick Stats</div>
-                            <div style="display: flex; flex-direction: column; gap: 8px;">
-                                <div style="display: flex; justify-content: space-between; font-size: 0.85rem;">
-                                    <span style="color: #4a6a4a;">Total Deposits</span>
-                                    <span style="font-weight: 600;">${formatCurrency(totalSavings)}</span>
+                        <!-- Financial Summary -->
+                        <div class="widget enhanced">
+                            <div class="widget-header">
+                                <h3><i class="fas fa-wallet"></i> Financial Summary</h3>
+                            </div>
+                            <div class="financial-summary">
+                                <div class="summary-item">
+                                    <div class="summary-label">
+                                        <i class="fas fa-arrow-down"></i>
+                                        <span>Total Deposits</span>
+                                    </div>
+                                    <div class="summary-value positive">${formatCurrency(totalSavings)}</div>
                                 </div>
-                                <div style="display: flex; justify-content: space-between; font-size: 0.85rem;">
-                                    <span style="color: #4a6a4a;">Total Withdrawals</span>
-                                    <span style="font-weight: 600;">${formatCurrency(totalWithdrawals)}</span>
+                                <div class="summary-item">
+                                    <div class="summary-label">
+                                        <i class="fas fa-arrow-up"></i>
+                                        <span>Total Withdrawals</span>
+                                    </div>
+                                    <div class="summary-value negative">${formatCurrency(totalWithdrawals)}</div>
                                 </div>
-                                <div style="display: flex; justify-content: space-between; font-size: 0.85rem;">
-                                    <span style="color: #4a6a4a;">Pending Loans</span>
-                                    <span style="font-weight: 600;">${pendingLoans}</span>
+                                <div class="summary-item">
+                                    <div class="summary-label">
+                                        <i class="fas fa-balance-scale"></i>
+                                        <span>Net Balance</span>
+                                    </div>
+                                    <div class="summary-value ${totalSavings - totalWithdrawals >= 0 ? 'positive' : 'negative'}">${formatCurrency(totalSavings - totalWithdrawals)}</div>
                                 </div>
-                                <div style="display: flex; justify-content: space-between; font-size: 0.85rem; padding-top: 8px; border-top: 1px solid rgba(0,0,0,0.06);">
-                                    <span style="color: #4a6a4a;">Total Members</span>
-                                    <span style="font-weight: 600;">${totalMembers}</span>
+                                <div class="summary-divider"></div>
+                                <div class="summary-item total">
+                                    <div class="summary-label">
+                                        <i class="fas fa-users"></i>
+                                        <span>Total Members</span>
+                                    </div>
+                                    <div class="summary-value">${totalMembers}</div>
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Investment Portfolio (Member) -->
+                        ${!isAdmin ? `
+                        <div class="widget enhanced">
+                            <div class="widget-header">
+                                <h3><i class="fas fa-chart-pie"></i> My Investments</h3>
+                                <button class="btn-link" id="viewAllInvestments">View All</button>
+                            </div>
+                            <div class="investments-list">
+                                ${myInvestments.slice(0, 3).map(inv => `
+                                    <div class="investment-item">
+                                        <div class="investment-icon">
+                                            <i class="fas fa-building"></i>
+                                        </div>
+                                        <div class="investment-details">
+                                            <h4>${inv.name}</h4>
+                                            <p>${formatCurrency(inv.amount)}</p>
+                                        </div>
+                                        <div class="investment-returns positive">
+                                            <i class="fas fa-arrow-up"></i>
+                                            <span>${inv.returns}%</span>
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                        ` : ''}
                     </div>
                 </div>
             </div>
@@ -761,49 +973,124 @@
             return;
         }
 
+        const onlineCount = mockData.members.filter(m => m.status === 'online').length;
+        const pendingCount = mockData.members.filter(m => m.role === 'pending').length;
+        const totalMembers = mockData.members.length;
+
         const html = `
-            <div class="container">
-                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 24px;">
-                    <div>
-                        <h2 style="font-size: 1.8rem;"><i class="fas fa-users-cog" style="color: #2e7d32;"></i> Member Management</h2>
-                        <p style="color: #4a6a4a;">Manage all members and their roles</p>
+            <div class="members-container">
+                <div class="members-header">
+                    <div class="members-header-left">
+                        <h1><i class="fas fa-users-cog"></i> Member Management</h1>
+                        <p>Manage all members and their roles in the chama</p>
                     </div>
-                    <button class="btn btn-primary" id="addMemberBtn"><i class="fas fa-user-plus"></i> Add Member</button>
+                    <button class="btn btn-primary" id="addMemberBtn">
+                        <i class="fas fa-user-plus"></i> Add New Member
+                    </button>
                 </div>
 
-                <div class="card">
-                    <div class="table-responsive">
-                        <table class="data-table">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Role</th>
-                                    <th>Status</th>
-                                    <th>Joined</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                ${mockData.members.map(m => `
-                                    <tr>
-                                        <td><strong>${m.name}</strong></td>
-                                        <td>${m.email}</td>
-                                        <td><span class="badge ${m.role === 'admin' ? 'admin' : 'member'}">${m.role === 'admin' ? 'Admin' : m.role === 'pending' ? 'Pending' : 'Member'}</span></td>
-                                        <td>
-                                            <span class="status-dot ${m.status}" style="width: 8px; height: 8px; border-radius: 50%; display: inline-block; background: ${m.status === 'online' ? '#43a047' : m.status === 'pending' ? '#f9a825' : '#c62828'};"></span>
-                                            ${m.status.charAt(0).toUpperCase() + m.status.slice(1)}
-                                        </td>
-                                        <td>${formatDate(m.joined)}</td>
-                                        <td>
-                                            <button class="btn btn-sm btn-secondary" onclick="window.viewMember(${m.id})"><i class="fas fa-eye"></i></button>
-                                            ${m.role !== 'admin' ? `<button class="btn btn-sm btn-danger" onclick="window.removeMember(${m.id})"><i class="fas fa-trash"></i></button>` : ''}
-                                        </td>
-                                    </tr>
-                                `).join('')}
-                            </tbody>
-                        </table>
+                <div class="members-stats">
+                    <div class="member-stat-card total">
+                        <div class="stat-icon-bg">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">${totalMembers}</div>
+                            <div class="stat-label">Total Members</div>
+                        </div>
                     </div>
+                    <div class="member-stat-card online">
+                        <div class="stat-icon-bg">
+                            <i class="fas fa-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">${onlineCount}</div>
+                            <div class="stat-label">Online Now</div>
+                        </div>
+                    </div>
+                    <div class="member-stat-card pending">
+                        <div class="stat-icon-bg">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">${pendingCount}</div>
+                            <div class="stat-label">Pending Approval</div>
+                        </div>
+                    </div>
+                    <div class="member-stat-card active">
+                        <div class="stat-icon-bg">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">${totalMembers - pendingCount}</div>
+                            <div class="stat-label">Active Members</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="members-filter-bar">
+                    <div class="filter-group">
+                        <div class="filter-input-wrapper">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Search members..." class="filter-input" id="memberSearch">
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <select class="filter-select" id="roleFilter">
+                            <option value="">All Roles</option>
+                            <option value="admin">Admin</option>
+                            <option value="member">Member</option>
+                            <option value="pending">Pending</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <select class="filter-select" id="statusFilter">
+                            <option value="">All Status</option>
+                            <option value="online">Online</option>
+                            <option value="offline">Offline</option>
+                            <option value="pending">Pending</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="members-grid">
+                    ${mockData.members.map((m, index) => `
+                        <div class="member-card" style="animation-delay: ${index * 0.1}s">
+                            <div class="member-card-header">
+                                <div class="member-avatar-large">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="member-status-indicator ${m.status}"></div>
+                            </div>
+                            <div class="member-card-body">
+                                <h3>${m.name}</h3>
+                                <p class="member-email">${m.email}</p>
+                                <div class="member-meta">
+                                    <span class="member-role-badge ${m.role}">
+                                        ${m.role === 'admin' ? 'Admin' : m.role === 'pending' ? 'Pending' : 'Member'}
+                                    </span>
+                                    <span class="member-joined">
+                                        <i class="fas fa-calendar-alt"></i> ${formatDate(m.joined)}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="member-card-footer">
+                                <button class="btn btn-sm btn-secondary" onclick="window.viewMember(${m.id})">
+                                    <i class="fas fa-eye"></i> View
+                                </button>
+                                ${m.role !== 'admin' ? `
+                                    <button class="btn btn-sm btn-danger" onclick="window.removeMember(${m.id})">
+                                        <i class="fas fa-trash"></i> Remove
+                                    </button>
+                                ` : ''}
+                                ${m.role === 'pending' ? `
+                                    <button class="btn btn-sm btn-success" onclick="window.approveMember(${m.id})">
+                                        <i class="fas fa-check"></i> Approve
+                                    </button>
+                                ` : ''}
+                            </div>
+                        </div>
+                    `).join('')}
                 </div>
             </div>
         `;
@@ -1032,7 +1319,7 @@
                     } else if (value !== null) {
                         showToast('Please enter a valid amount', 'error');
                     }
-                }, 'Enter amount (KES)');
+                }, 'Enter amount (KES)', 'number');
             });
         }
 
@@ -1074,6 +1361,42 @@
                 }, 'Amount & Reason');
             });
         }
+
+        // View All buttons
+        const viewAllActivity = document.getElementById('viewAllActivity');
+        if (viewAllActivity) {
+            viewAllActivity.addEventListener('click', function() {
+                showToast('Viewing all transaction history...', '');
+            });
+        }
+
+        const viewAllLoans = document.getElementById('viewAllLoans');
+        if (viewAllLoans) {
+            viewAllLoans.addEventListener('click', function() {
+                showToast('Viewing all loans...', '');
+            });
+        }
+
+        const viewAllInvestments = document.getElementById('viewAllInvestments');
+        if (viewAllInvestments) {
+            viewAllInvestments.addEventListener('click', function() {
+                showToast('Viewing all investments...', '');
+            });
+        }
+
+        const viewAllEvents = document.getElementById('viewAllEvents');
+        if (viewAllEvents) {
+            viewAllEvents.addEventListener('click', function() {
+                showToast('Viewing all events...', '');
+            });
+        }
+
+        const manageMembersBtn = document.getElementById('manageMembersBtn');
+        if (manageMembersBtn) {
+            manageMembersBtn.addEventListener('click', function() {
+                navigateTo('members');
+            });
+        }
     }
 
     function bindMemberEvents() {
@@ -1090,13 +1413,89 @@
             });
         }
 
+        // Search and filter functionality
+        const memberSearch = document.getElementById('memberSearch');
+        if (memberSearch) {
+            memberSearch.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const memberCards = document.querySelectorAll('.member-card');
+                memberCards.forEach(card => {
+                    const name = card.querySelector('h3').textContent.toLowerCase();
+                    const email = card.querySelector('.member-email').textContent.toLowerCase();
+                    if (name.includes(searchTerm) || email.includes(searchTerm)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        }
+
+        const roleFilter = document.getElementById('roleFilter');
+        if (roleFilter) {
+            roleFilter.addEventListener('change', function() {
+                const filterValue = this.value;
+                const memberCards = document.querySelectorAll('.member-card');
+                memberCards.forEach(card => {
+                    const roleBadge = card.querySelector('.member-role-badge');
+                    const role = roleBadge.textContent.toLowerCase();
+                    if (filterValue === '' || role.includes(filterValue)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        }
+
+        const statusFilter = document.getElementById('statusFilter');
+        if (statusFilter) {
+            statusFilter.addEventListener('change', function() {
+                const filterValue = this.value;
+                const memberCards = document.querySelectorAll('.member-card');
+                memberCards.forEach(card => {
+                    const statusIndicator = card.querySelector('.member-status-indicator');
+                    const status = statusIndicator.classList.contains(filterValue);
+                    if (filterValue === '' || status) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        }
+
         window.viewMember = function(id) {
-            showModal('Member Details', 'Viewing member profile...', 'Close', function() {});
+            const member = mockData.members.find(m => m.id === id);
+            if (member) {
+                showModal('Member Details', 
+                    `Name: ${member.name}\nEmail: ${member.email}\nRole: ${member.role}\nStatus: ${member.status}\nJoined: ${formatDate(member.joined)}`, 
+                    'Close', 
+                    function() {}
+                );
+            }
         };
 
         window.removeMember = function(id) {
             showModal('Remove Member', 'Remove this member from the group?', 'Remove', function() {
-                showToast('Member removed.', '');
+                const index = mockData.members.findIndex(m => m.id === id);
+                if (index > -1) {
+                    mockData.members.splice(index, 1);
+                    showToast('Member removed successfully.', 'success');
+                    renderMembers();
+                }
+            });
+        };
+
+        window.approveMember = function(id) {
+            showModal('Approve Member', 'Approve this pending member?', 'Approve', function() {
+                const member = mockData.members.find(m => m.id === id);
+                if (member) {
+                    member.role = 'member';
+                    member.status = 'online';
+                    showToast('Member approved successfully!', 'success');
+                    renderMembers();
+                }
             });
         };
     }
